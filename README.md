@@ -15,25 +15,44 @@
 * **Synchronized Live-Code Tracer:** Dynamically highlights executing lines of FAANG-level JavaScript in real-time, perfectly mapping to visual canvas mutations.
 * **Asynchronous Playback Telemetry:** Full user control over the execution loop with robust state management (Pause, Resume, Live Speed Scaling).
 * **Interactive Memory States:** Dynamic pointer shifting, array mutations, and boundary tracking that physically resolve mathematically optimal solutions.
-* **Scalable Modular Design:** Engineered with reusable React components to easily integrate future visualizers and multi-dimensional data structures.
 
-## 🧠 Implemented Modules
+---
 
-### Dynamic Sliding Window (The Caterpillar Method)
-* **Optimization:** **O(N)** Time Complexity
+## 🧩 Pattern Visualizer (Technical Interview Strategies)
+
+This module focuses on advanced problem-solving heuristics used to optimize Brute-Force $O(N^2)$ solutions down to $O(N)$ or $O(1)$ time complexities.
+
+### 1. Dynamic Sliding Window (The Caterpillar Method)
+* **Optimization:** **O(N)** Time
 * Visualizes variable-size subarray optimization by stretching the right boundary to satisfy targets and snapping the left pointer forward to optimize window length. Features an interactive, real-time minimum-length tracking scoreboard.
 
-### Prefix Sum (Range Sum Queries)
+### 2. Prefix Sum (Range Sum Queries)
 * **Optimization:** **O(N)** Build | **O(1)** Query
 * Demonstrates constant-time range sum queries using a synchronized dual-track visualization. Employs an animated "drop" effect to eliminate unwanted sub-array prefixes and visually prove the mathematical query computation.
 
-### Binary Search Variants
-* **Optimization:** **O(log N)** Time Complexity
-* An interactive divide-and-conquer visualizer featuring dynamic midpoint tracking and instant search-space truncation. Visually proves logarithmic reduction via active bounds highlighting.
+### 3. Fast & Slow Pointers (Cycle Detection)
+* **Optimization:** **O(N)** Time | **O(1)** Space
+* Engineered with independent, asynchronous pointer animations to visually represent relative traversal speeds (1x vs. 2x steps). Mathematically proves Floyd's Tortoise and Hare algorithm by highlighting exact intersection nodes.
 
-### N-Queens Backtracking
-* **Optimization:** **O(N!)** Time Complexity
-* A step-by-step recursive backtracking simulation mapped to an interactive chessboard. Visually isolates spatial conflicts and highlights branch pruning within the recursion tree.
+### 4. Two Pointers (Bidirectional Convergence)
+* **Optimization:** **O(N)** Time
+* Maps opposing left and right bounding pointers onto a single array track, translating conditional convergence logic into deterministic visual shifts until the targets intersect or satisfy the constraints.
+
+---
+
+## 🧠 Algorithm Visualizer (Foundational DSA)
+
+This module focuses on core computer science operations, search space reductions, and spatial recursive structures.
+
+### 1. Binary Search Variants
+* **Optimization:** **O(log N)** Time
+* An interactive divide-and-conquer visualizer featuring dynamic midpoint tracking and instant search-space truncation. Visually proves logarithmic reduction via active bounds highlighting for both standard searches and rotated array pivots.
+
+### 2. N-Queens Backtracking
+* **Optimization:** **O(N!)** Time
+* A step-by-step recursive backtracking simulation mapped to an interactive chessboard. Visually isolates spatial conflicts and highlights branch pruning within the recursion tree, safely managing the deep call stack UI updates.
+
+---
 
 ## ⚡ The Visualization Engine (Under the Hood)
 
@@ -45,16 +64,17 @@
 * **Frontend:** React.js, Tailwind CSS, JavaScript (ES6+)
 * **Backend:** Node.js, Express.js
 * **Database:** MongoDB
+## Live Demo Video
 
-## 🎯 Project Goal
 
-AlgoViz aims to eliminate the need for "mental code tracing" by transforming raw algorithm execution into visually interactive experiences. It is engineered for students, developers, and technical interview candidates who want to see *how* optimal code manipulates memory in real-time.
+https://github.com/user-attachments/assets/f20afa03-8dbb-413a-b89d-bd7b8ef69b26
 
-## 📌 Future Enhancements
 
-* Graph Algorithms Visualizer (BFS, DFS, Dijkstra's)
-* Tree Traversal Simulator
-* Dynamic Programming Matrix Visualizations
+
+## 📌 Roadmap: The Endgame Modules
+
+* **Sorting Architectures:** Real-time DOM coordinate swapping for in-place algorithms (Bubble, Insertion) and recursive sub-array partitions (Merge Sort, Quick Sort).
+* **Graph & Tree Traversals:** 2D Node-Edge canvases visualizing BFS/DFS with auxiliary Queue/Stack rendering, and Dijkstra's Shortest Path with live edge-relaxation.
 
 ---
 
