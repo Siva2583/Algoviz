@@ -38,17 +38,25 @@ This module focuses on advanced problem-solving heuristics used to optimize Brut
 * **Optimization:** **O(N)** Time
 * Maps opposing left and right bounding pointers onto a single array track, translating conditional convergence logic into deterministic visual shifts until the targets intersect or satisfy the constraints.
 
+### 5. Binary Search Variants (Logarithmic Bounds)
+* **Optimization:** **O(log N)** Time
+* Advanced logarithmic boundary manipulation for first/last occurrences and rotated arrays. An interactive divide-and-conquer visualizer featuring dynamic midpoint tracking and instant search-space truncation.
+
 ---
 
 ## 🧠 Algorithm Visualizer (Foundational DSA)
 
 This module focuses on core computer science operations, search space reductions, and spatial recursive structures.
 
-### 1. Binary Search Variants
-* **Optimization:** **O(log N)** Time
-* An interactive divide-and-conquer visualizer featuring dynamic midpoint tracking and instant search-space truncation. Visually proves logarithmic reduction via active bounds highlighting for both standard searches and rotated array pivots.
+### 1. Sorting Architectures (In-Place & Recursive)
+* **Optimization:** **O(N log N)** / **O(N²)** Time
+* Real-time DOM coordinate swapping animations for in-place algorithms (Bubble, Insertion) and recursive sub-array partitions (Merge Sort, Quick Sort). Visualizes continuous array mutation and call-stack execution efficiency.
 
-### 2. N-Queens Backtracking
+### 2. Tree Traversals (BFS & DFS)
+* **Optimization:** **O(N)** Time
+* 2D Node-Edge canvas rendering hierarchical data structures. Maps the live state of auxiliary memory structures (Queues for Level-Order, Stacks for Depth-First) directly alongside the tree to visualize asynchronous enqueue/dequeue operations.
+
+### 3. N-Queens Backtracking
 * **Optimization:** **O(N!)** Time
 * A step-by-step recursive backtracking simulation mapped to an interactive chessboard. Visually isolates spatial conflicts and highlights branch pruning within the recursion tree, safely managing the deep call stack UI updates.
 
@@ -64,19 +72,14 @@ This module focuses on core computer science operations, search space reductions
 * **Frontend:** React.js, Tailwind CSS, JavaScript (ES6+)
 * **Backend:** Node.js, Express.js
 * **Database:** MongoDB
-## Live Demo Video
+## Demo Video
 
 
-https://github.com/user-attachments/assets/f20afa03-8dbb-413a-b89d-bd7b8ef69b26
+https://github.com/user-attachments/assets/08715ad8-f04c-4ced-9b08-9fb495b934f9
 
 
 
-## 📌 Roadmap: The Endgame Modules
 
-* **Sorting Architectures:** Real-time DOM coordinate swapping for in-place algorithms (Bubble, Insertion) and recursive sub-array partitions (Merge Sort, Quick Sort).
-* **Graph & Tree Traversals:** 2D Node-Edge canvases visualizing BFS/DFS with auxiliary Queue/Stack rendering, and Dijkstra's Shortest Path with live edge-relaxation.
-
----
 
 ## 👨‍💻 Developer
 
