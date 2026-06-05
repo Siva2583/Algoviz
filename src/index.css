@@ -2,15 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* We add a basic dark background so the app doesn't flash white on load */
 body {
   margin: 0;
   padding: 0;
-  background-color: #0d1117; /* Matches your app's dark theme */
+  background-color: #000000;
   color: white;
   font-family: system-ui, -apple-system, sans-serif;
-  
-  /* CRITICAL FIX: Ensure the body takes up full width/height naturally */
   width: 100%;
   min-height: 100vh;
 }

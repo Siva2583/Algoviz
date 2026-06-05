@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { generateBinarySearchAnimations } from './algorithm/sorting/algorithms/binarySearchLogic';
-import { Navigate,useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import TutorialTab from './tutorials/TutorialTab';
+import { binarysearchData } from './tutorials/binarysearchData';
 
 const BinarySearch = () => {
   const [inputStr, setInputStr] = useState("2,4,6,8,10,12,14,16,18,20");
@@ -9,7 +11,8 @@ const BinarySearch = () => {
   const [isVisualizing, setIsVisualizing] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [speedDisplay, setSpeedDisplay] = useState(600);
-  const [activeTab, setActiveTab] = useState('objective');
+  const [activeTabInfo, setActiveTabInfo] = useState('objective');
+  const [activeTab, setActiveTab] = useState('visualize');
   const [currentArray, setCurrentArray] = useState(inputStr.split(',').filter(Boolean).map(Number));
   const [activeBounds, setActiveBounds] = useState({ L: 0, R: 9, M: null });
   const [currentAction, setCurrentAction] = useState('none');
@@ -97,15 +100,49 @@ const BinarySearch = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-[#0a0a0f] text-gray-200 font-sans p-4">
-      <button
-          className="self-start
-              text-2xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600d hover:bg-cyan-500/10
-              hover:text-cyan-300 hover:scale-105 active:scale-95 transition-all duration-300
-              "
-              onClick={() => navigate('/')}
-              >
-              ← Back To Controls
-      </button>
+      <div className="flex justify-between items-start mb-6">
+                <button
+                    className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 hover:scale-105 active:scale-95 transition-all duration-300"
+                    onClick={() => navigate('/')}
+                >
+                    ← Back To Controls
+                </button>
+                <div className="flex flex-col w-72">
+                    <div className="flex bg-[#080808] border border-gray-800 rounded-md p-1 relative shadow-[0_0_15px_rgba(0,0,0,0.8)] font-mono">
+                        <div
+                            className="absolute top-1 bottom-1 w-[calc(50%-4px)] bg-[#ffbf00]/10 border border-[#ffbf00]/50 rounded-sm transition-all duration-300 ease-in-out"
+                            style={{ left: activeTab === 'visualize' ? '4px' : 'calc(50% + 2px)' }}
+                        ></div>
+                        <button
+                            onClick={() => setActiveTab('visualize')}
+                            className={`flex-1 py-2 text-sm font-bold z-10 transition-colors duration-300 flex items-center justify-center gap-2 ${
+                                activeTab === 'visualize' ? 'text-[#ffbf00]' : 'text-gray-500 hover:text-gray-300'
+                            }`}
+                        >
+                            <span className="text-xs opacity-50">[0]</span> VISUALIZE
+                        </button>
+                        <button
+                            onClick={() => setActiveTab('tutorial')}
+                            className={`flex-1 py-2 text-sm font-bold z-10 transition-colors duration-300 flex items-center justify-center gap-2 ${
+                                activeTab === 'tutorial' ? 'text-[#ffbf00]' : 'text-gray-500 hover:text-gray-300'
+                            }`}
+                        >
+                            <span className="text-xs opacity-50">[1]</span> TUTORIAL
+                        </button>
+                    </div>
+                    <div className="w-full relative h-8 font-mono text-[#ffbf00] font-bold overflow-hidden">
+                        <div
+                            className="absolute transition-all duration-300 flex flex-col items-center"
+                            style={{ left: activeTab === 'visualize' ? '25%' : '75%', transform: 'translateX(-50%)' }}
+                        >
+                            <span className="text-lg leading-none -mt-1">^</span>
+                            <span className="text-[10px] leading-none uppercase tracking-widest mt-1">head_ptr</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {activeTab === 'visualize' ? (
+                <>
       <div className="flex flex-col md:flex-row justify-between items-center bg-gray-800/60 border border-gray-700 p-4 rounded-xl mb-4 gap-4 shadow-lg">
         <div className="flex items-center gap-3">
           <input 
@@ -164,12 +201,12 @@ const BinarySearch = () => {
             <h2 className="text-xl font-bold text-gray-300">Minimap Architecture</h2>
             <div className="bg-gray-900/60 border border-gray-700 rounded-lg p-3 w-3/5 shadow-inner">
               <div className="flex gap-2 mb-2 border-b border-gray-700 pb-2">
-                <button onClick={() => setActiveTab('objective')} className={`px-3 py-1 text-xs font-bold rounded transition-all ${activeTab === 'objective' ? 'bg-cyan-500/20 text-cyan-300' : 'text-gray-500 hover:text-gray-400'}`}>🎯 Objective</button>
-                <button onClick={() => setActiveTab('technique')} className={`px-3 py-1 text-xs font-bold rounded transition-all ${activeTab === 'technique' ? 'bg-pink-500/20 text-pink-300' : 'text-gray-500 hover:text-gray-400'}`}>🧠 Technique</button>
+                <button onClick={() => setActiveTabInfo('objective')} className={`px-3 py-1 text-xs font-bold rounded transition-all ${activeTabInfo === 'objective' ? 'bg-cyan-500/20 text-cyan-300' : 'text-gray-500 hover:text-gray-400'}`}>🎯 Objective</button>
+                <button onClick={() => setActiveTabInfo('technique')} className={`px-3 py-1 text-xs font-bold rounded transition-all ${activeTabInfo === 'technique' ? 'bg-pink-500/20 text-pink-300' : 'text-gray-500 hover:text-gray-400'}`}>🧠 Technique</button>
               </div>
               <div className="text-xs text-gray-400 leading-relaxed min-h-[40px]">
-                {activeTab === 'objective' && <p><strong className="text-gray-300">Goal:</strong> Find a target value within a sorted array in <strong className="text-cyan-400">O(log N)</strong> time.</p>}
-                {activeTab === 'technique' && <p><strong className="text-gray-300">Divide & Conquer:</strong> Calculate the middle index. If target is less than Mid, discard right half. If greater, discard left. Repeat until found.</p>}
+                {activeTabInfo === 'objective' && <p><strong className="text-gray-300">Goal:</strong> Find a target value within a sorted array in <strong className="text-cyan-400">O(log N)</strong> time.</p>}
+                {activeTabInfo === 'technique' && <p><strong className="text-gray-300">Divide & Conquer:</strong> Calculate the middle index. If target is less than Mid, discard right half. If greater, discard left. Repeat until found.</p>}
               </div>
             </div>
           </div>
@@ -295,7 +332,13 @@ const BinarySearch = () => {
           </div>
         </div>
       </div>
-    </div>
+      </>
+      
+    ):(
+  <TutorialTab data={binarysearchData.binary} />
+
+)
+}</div>
   );
 };
 

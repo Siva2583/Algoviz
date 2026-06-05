@@ -1,6 +1,8 @@
 import React, { useState, useRef } from 'react';
 import { generateTwoPointersAnimations } from '../core/algorithm/sorting/algorithms/twoPointerslogic';
 import { Navigate,useNavigate } from 'react-router-dom';
+import TutorialTab from '../core/tutorials/TutorialTab';
+import { twoPointersData } from '../core/tutorials/twopointersData';
 
 const TwoPointers = () => {
   const navigate=useNavigate();
@@ -9,6 +11,7 @@ const TwoPointers = () => {
   const [isPaused, setIsPaused] = useState(false);
   const [speedDisplay, setSpeedDisplay] = useState(600); 
   const speedRef = useRef(600);
+  const [activeTab,setActiveTab]=useState('visualize');
   const [currentArray, setCurrentArray] = useState(inputStr.split(''));
   const [activePointers, setActivePointers] = useState({ L: null, R: null });
   const [currentAction, setCurrentAction] = useState('none');
@@ -102,24 +105,49 @@ const TwoPointers = () => {
 
   return (
     <div className="flex flex-col h-screen bg-[#0a0a0f] text-gray-200 font-sans p-4">
-      <button
-  className="
-    self-start
-    text-2xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600d
-    
-    hover:bg-cyan-500/10
-    hover:text-cyan-300
-    hover:scale-105
-    
-    active:scale-95
-    
-    transition-all
-    duration-300
-  "
-  onClick={() => navigate('/')}
->
-  ← Back To Controls
-</button>
+      <div className="flex justify-between items-start mb-6">
+                <button
+                    className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 hover:scale-105 active:scale-95 transition-all duration-300"
+                    onClick={() => navigate('/')}
+                >
+                    ← Back To Controls
+                </button>
+                <div className="flex flex-col w-72">
+                    <div className="flex bg-[#080808] border border-gray-800 rounded-md p-1 relative shadow-[0_0_15px_rgba(0,0,0,0.8)] font-mono">
+                        <div
+                            className="absolute top-1 bottom-1 w-[calc(50%-4px)] bg-[#ffbf00]/10 border border-[#ffbf00]/50 rounded-sm transition-all duration-300 ease-in-out"
+                            style={{ left: activeTab === 'visualize' ? '4px' : 'calc(50% + 2px)' }}
+                        ></div>
+                        <button
+                            onClick={() => setActiveTab('visualize')}
+                            className={`flex-1 py-2 text-sm font-bold z-10 transition-colors duration-300 flex items-center justify-center gap-2 ${
+                                activeTab === 'visualize' ? 'text-[#ffbf00]' : 'text-gray-500 hover:text-gray-300'
+                            }`}
+                        >
+                            <span className="text-xs opacity-50">[0]</span> VISUALIZE
+                        </button>
+                        <button
+                            onClick={() => setActiveTab('tutorial')}
+                            className={`flex-1 py-2 text-sm font-bold z-10 transition-colors duration-300 flex items-center justify-center gap-2 ${
+                                activeTab === 'tutorial' ? 'text-[#ffbf00]' : 'text-gray-500 hover:text-gray-300'
+                            }`}
+                        >
+                            <span className="text-xs opacity-50">[1]</span> TUTORIAL
+                        </button>
+                    </div>
+                    <div className="w-full relative h-8 font-mono text-[#ffbf00] font-bold overflow-hidden">
+                        <div
+                            className="absolute transition-all duration-300 flex flex-col items-center"
+                            style={{ left: activeTab === 'visualize' ? '25%' : '75%', transform: 'translateX(-50%)' }}
+                        >
+                            <span className="text-lg leading-none -mt-1">^</span>
+                            <span className="text-[10px] leading-none uppercase tracking-widest mt-1">head_ptr</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {activeTab === 'visualize' ? (
+                <>
       <div className="flex flex-col md:flex-row justify-between items-center bg-gray-800/60 border border-gray-700 p-4 rounded-xl mb-4 gap-4 shadow-lg">
         <div className="flex items-center gap-3">
           <div className="relative">
@@ -284,10 +312,17 @@ const TwoPointers = () => {
 
           </div>
         </div>
+        </div>
+            </>
+      
+    ):(
+  <TutorialTab data={twoPointersData.twoPointers} />
 
-      </div>
-    </div>
+)
+}</div>
   );
 };
+
+      
 
 export default TwoPointers;

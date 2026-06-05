@@ -2,7 +2,7 @@
 
 export const CORE_MODULES = [
   { 
-    id: 1, 
+    id: 5, 
     title: "Pathfinder", 
     desc: "BFS, DFS, Dijkstra", 
     category: "Graphs", 
@@ -34,7 +34,7 @@ export const CORE_MODULES = [
     path: "/modules/core/n-queens" 
   },
   { 
-    id: 5, 
+    id: 1, 
     title: "Binary Search", 
     desc: "Iterative Search Logic", 
     category: "Searching", 
@@ -95,7 +95,7 @@ export const PATTERN_MODULES = [
   { 
     id: 12, 
     title: "Fast & Slow Pointers", 
-    desc: "Cycle Detection", 
+    desc: "Move Zeroes", 
     category: "Linked List", 
     difficulty: "Hard", 
     path: "/modules/patterns/fast-slow" 

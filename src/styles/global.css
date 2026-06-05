@@ -1,6 +1,6 @@
-/* --- GLOBAL THEME & COLORS --- */
+
 :root {
-  --bg-color: #050505;
+  --bg-color: black;
   --card-bg: rgba(20, 20, 20, 0.6); 
   --text-main: #ffffff; 
   --text-muted: #888888; 
@@ -17,21 +17,21 @@
 
 
 body {
-  background-color: var(--bg-color);
+  background-color:black;
   color: var(--text-main);
   font-family: 'Inter', sans-serif;
   top: 3%;
   margin: 30px;
   padding: 0;
   background-image: 
-    radial-gradient(circle at 10% 20%, rgba(0, 234, 255, 0.08) 0%, transparent 40%),
-    radial-gradient(circle at 90% 80%, rgba(255, 191, 0, 0.08) 0%, transparent 40%);
+    radial-gradient(circle at 10% 20%, black 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%,black (255, 191, 0, 0.08) 0%, transparent 40%);
   min-height: 100vh;
-   background-size: 200% 200%; /* Make background bigger so it can move */
+   background-size: 200% 200%;
   animation: gradientPulse 15s ease infinite; 
+  
 }
 
-/* --- NAVBAR --- */
 .navbar {
   display: flex;
   justify-content: center;
@@ -40,30 +40,25 @@ body {
   top: 26px;
   position: relative;
   z-index: 100;
-  height: 160px; /* Added fixed height to accommodate bigger logo */
+  height: 160px;
 }
-
-/* 1. BIGGER LOGO FIX */
 .nav-logo {
-  height: 190px; /* Increased from 60px to 80px */
+  height: 190px;
   width: 280px;
   position: absolute;
   right: 60px;
   border-radius: 5%;
-  
-
   transition: transform 0.3s ease;
 }
 
 .nav-logo:hover {
-  transform: scale(1.05); /* Interactive touch */
+  transform: scale(1.05);
 }
 
-/* --- DOUBLE LINKED LIST TOGGLE --- */
 .dll-toggle {
   display: flex;
   align-items: center;
-  gap: 30px; /* Increased gap from 20px to 30px for longer connector feel */
+  gap: 30px;
 }
 
 .dll-node {
@@ -111,32 +106,28 @@ body {
   text-shadow: 0 0 10px rgba(255, 191, 0, 0.5);
   transform: scale(1.1);
 }
-
-/* 2. LONGER ARROW FIX */
 .dll-arrows {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 0px; 
-  width: 60px; /* Force width to make the arrows span across */
+  width: 60px; 
 }
 
 .arrow-line {
   font-family: monospace;
-  font-size: 2rem; /* Increased size significantly */
-  font-weight: 300; /* Thinner weight looks cleaner at large sizes */
+  font-size: 2rem;
+  font-weight: 300; 
   color: #333; 
   transition: all 0.4s ease;
-  line-height: 0.6; /* Squeeze them vertically */
-  transform: scaleX(2); /* Stretch horizontally to make them "Longer" */
+  line-height: 0.6;
+  transform: scaleX(2);
 }
 
 .dll-toggle.algo-mode .arrow-top { color: var(--algo-cyan); text-shadow: 0 0 8px var(--algo-cyan); }
 .dll-toggle.pattern-mode .arrow-bottom { color: var(--pattern-amber); text-shadow: 0 0 8px var(--pattern-amber); }
 
-
-/* --- GRID & CARDS --- */
 .grid-container {
   max-width: 1200px;
   margin: 4rem auto;
@@ -217,29 +208,22 @@ body {
   letter-spacing: 2.5px; 
   text-shadow: 0 0 10px currentColor;
 }
-/* --- CUSTOM SCROLLBAR --- */
-/* Width */
 ::-webkit-scrollbar {
   width: 10px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
   background: #0a0a0a; 
 }
-
-/* Handle */
 ::-webkit-scrollbar-thumb {
   background: #333; 
   border-radius: 5px;
-  border: 2px solid #0a0a0a; /* Creates padding effect */
+  border: 2px solid #0a0a0a; 
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555; 
 }
-/* Add this animation definition */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -251,28 +235,24 @@ body {
   }
 }
 
-/* Apply it to the cards */
 .algo-card {
-  /* Keep your existing styles, but add this: */
   animation: fadeInUp 0.5s ease-out forwards;
-  opacity: 0; /* Start hidden */
+  opacity: 0; 
 }
 
-/* Stagger the delay so they cascade */
 .algo-card:nth-child(1) { animation-delay: 0.1s; }
 .algo-card:nth-child(2) { animation-delay: 0.15s; }
 .algo-card:nth-child(3) { animation-delay: 0.2s; }
 .algo-card:nth-child(4) { animation-delay: 0.25s; }
 .algo-card:nth-child(5) { animation-delay: 0.3s; }
 .algo-card:nth-child(6) { animation-delay: 0.35s; }
-/* ... and so on */
-/* ... all your other code ... */
+
 
 .cyan-bar-text {
     position: relative; 
-    z-index: 10;      /* Forces text to sit on TOP of the bar */
-    color: #050505;   /* Dark color to contrast with the bright cyan */
-    font-weight: 700; /* Make it bold so it's easier to read */
+    z-index: 10;
+    color: #050505;   
+    font-weight: 700; 
     text-align: center;
     color: #333;
     padding: 10px;

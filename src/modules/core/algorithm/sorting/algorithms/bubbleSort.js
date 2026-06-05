@@ -1,27 +1,98 @@
-export function getBubbleSortAnimations(array) {
-  const animations = [];
-  if (array.length <= 1) return array;
-  const auxiliaryArray = array.slice();
-  
-  bubbleSortHelper(auxiliaryArray, animations);
-  return animations;
-}
+export const generateBubbleSort = (rawArray) => {
+    let arr = rawArray.map((val) => ({
+        id: `block-${val}-${Math.random().toString(36).substr(2, 9)}`,
+        val: val
+    }));
 
-function bubbleSortHelper(auxiliaryArray, animations) {
-  const n = auxiliaryArray.length;
-  
-  for (let i = 0; i < n - 1; i++) {
-    for (let j = 0; j < n - i - 1; j++) {
-      animations.push([j, j + 1, 'compare']);
-      animations.push([j, j + 1, 'revert']);
-      
-      if (auxiliaryArray[j] > auxiliaryArray[j + 1]) {
-        animations.push([j, auxiliaryArray[j + 1], 'swap']); 
-        animations.push([j + 1, auxiliaryArray[j], 'swap']);
-        let temp = auxiliaryArray[j];
-        auxiliaryArray[j] = auxiliaryArray[j + 1];
-        auxiliaryArray[j + 1] = temp;
-      }
+    const frames = [];
+    const n = arr.length;
+    const sortedIndices = [];
+    // NEW: Initialize stats tracker
+    let stats = { passes: 0, comps: 0, swaps: 0 };
+
+    const cloneArray = () => arr.map(item => ({ ...item }));
+
+    // Initial Frame
+    frames.push({
+        array: cloneArray(), activeIndices: [], sortedIndices: [...sortedIndices],
+        isSwapping: false, minimumIndex: null, codeLine: 'start',
+        currentStats: { ...stats }, // NEW: Send stats to UI
+        msg: "System Ready. Initializing Bubble Sort."
+    });
+
+    for (let i = 0; i < n; i++) {
+        stats.passes++; // Increment Pass Counter
+        
+        frames.push({
+            array: cloneArray(), activeIndices: [], sortedIndices: [...sortedIndices],
+            isSwapping: false, minimumIndex: null, codeLine: 'outer',
+            currentStats: { ...stats },
+            msg: `Pass ${stats.passes} of ${n}.`
+        });
+
+        for (let j = 0; j < n - i - 1; j++) {
+            frames.push({
+                array: cloneArray(), activeIndices: [j, j + 1], sortedIndices: [...sortedIndices],
+                isSwapping: false, minimumIndex: null, codeLine: 'inner',
+                currentStats: { ...stats },
+                msg: `Scanning window at index ${j} and ${j + 1}.`
+            });
+
+            stats.comps++; // Increment Comparison Counter
+            frames.push({
+                array: cloneArray(), activeIndices: [j, j + 1], sortedIndices: [...sortedIndices],
+                isSwapping: false, minimumIndex: null, codeLine: 'compare',
+                currentStats: { ...stats },
+                msg: `Comparing ${arr[j].val} and ${arr[j + 1].val}. Is ${arr[j].val} > ${arr[j + 1].val}?`
+            });
+
+            if (arr[j].val > arr[j + 1].val) {
+                stats.swaps++; // Increment Swap Counter
+                frames.push({
+                    array: cloneArray(), activeIndices: [j, j + 1], sortedIndices: [...sortedIndices],
+                    isSwapping: true, minimumIndex: null, codeLine: 'swap',
+                    currentStats: { ...stats },
+                    msg: `Yes! ${arr[j].val} > ${arr[j + 1].val}. Swapping blocks...`
+                });
+
+                // The actual mathematical swap
+                let temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+
+                frames.push({
+                    array: cloneArray(), activeIndices: [j, j + 1], sortedIndices: [...sortedIndices],
+                    isSwapping: false, minimumIndex: null, codeLine: 'swap',
+                    currentStats: { ...stats },
+                    msg: `Swap complete.`
+                });
+            } else {
+                frames.push({
+                    array: cloneArray(), activeIndices: [j, j + 1], sortedIndices: [...sortedIndices],
+                    isSwapping: false, minimumIndex: null, codeLine: 'compare',
+                    currentStats: { ...stats },
+                    msg: `No swap needed. Moving window forward.`
+                });
+            }
+        }
+
+        // Lock the element that just bubbled to the end
+        sortedIndices.push(n - i - 1);
+        frames.push({
+            array: cloneArray(), activeIndices: [], sortedIndices: [...sortedIndices],
+            isSwapping: false, minimumIndex: null, codeLine: 'outer',
+            currentStats: { ...stats },
+            msg: `Pass complete. Block locked into its final sorted position.`
+        });
     }
-  }
-}
+
+    // Final Frame
+    frames.push({
+        array: cloneArray(), activeIndices: [], sortedIndices: [...Array(n).keys()],
+        isSwapping: false, minimumIndex: null, codeLine: 'start',
+        currentStats: { ...stats },
+        msg: "Bubble Sort Complete! Array is fully sorted."
+    });
+
+    return frames;
+};

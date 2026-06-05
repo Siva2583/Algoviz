@@ -1,13 +1,16 @@
 import React, { useState, useRef } from 'react';
 import { Navigate,useNavigate } from 'react-router-dom';
 import { generateFastSlowAnimations } from '../core/algorithm/sorting/algorithms/fastSlowLogic';
+import TutorialTab from '../core/tutorials/TutorialTab';
+import { fastSlowData } from '../core/tutorials/fastslowpointerData';
 
 const FastSlowPointers = () => {
   const [inputStr, setInputStr] = useState("0,1,0,3,12,0,8");
   const [isVisualizing, setIsVisualizing] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [speedDisplay, setSpeedDisplay] = useState(600);
-  const [activeTab, setActiveTab] = useState('objective');
+  const [activeTabInfo, setactiveTabInfo] = useState('objective');
+  const [activeTab,setactiveTab]=useState('visualize');
   const [currentArray, setCurrentArray] = useState(inputStr.split(',').filter(Boolean));
   const [activePointers, setActivePointers] = useState({ slow: null, fast: null });
   const [currentAction, setCurrentAction] = useState('none');
@@ -87,15 +90,57 @@ const FastSlowPointers = () => {
 
   return (
     <div className="flex flex-col h-screen bg-[#0a0a0f] text-gray-200 font-sans p-4">
-        <button
-                        className="self-start
-                            text-2xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600d hover:bg-cyan-500/10
-                            hover:text-cyan-300 hover:scale-105 active:scale-95 transition-all duration-300
-                            "
-                            onClick={() => navigate('/')}
-                            >
-                            ← Back To Controls
-          </button>
+        <div className="flex justify-between items-start mb-6">
+                <button
+    onClick={() => navigate('/')}
+    className="group flex items-center gap-3 px-4 py-2 bg-[#080808] border border-gray-800 rounded-md hover:border-[#ffbf00]/30 transition-all duration-300 font-mono shadow-[0_0_15px_rgba(0,0,0,0.5)]"
+>
+    <span className="text-[#ffbf00] font-bold group-hover:-translate-x-1 transition-transform duration-300">
+        {'<'}
+    </span>
+    <span className="text-gray-400 text-sm group-hover:text-white transition-colors duration-300">
+        cd ..
+    </span>
+    <span className="text-gray-600 text-xs tracking-widest border-l border-gray-800 pl-3 ml-1 group-hover:border-[#ffbf00]/50 transition-colors duration-300">
+        /ROOT
+    </span>
+</button>
+                <div className="flex flex-col w-72">
+                    <div className="flex bg-[#080808] border border-gray-800 rounded-md p-1 relative shadow-[0_0_15px_rgba(0,0,0,0.8)] font-mono">
+                        <div
+                            className="absolute top-1 bottom-1 w-[calc(50%-4px)] bg-[#ffbf00]/10 border border-[#ffbf00]/50 rounded-sm transition-all duration-300 ease-in-out"
+                            style={{ left: activeTab === 'visualize' ? '4px' : 'calc(50% + 2px)' }}
+                        ></div>
+                        <button
+                            onClick={() => setactiveTab('visualize')}
+                            className={`flex-1 py-2 text-sm font-bold z-10 transition-colors duration-300 flex items-center justify-center gap-2 ${
+                                activeTab === 'visualize' ? 'text-[#ffbf00]' : 'text-gray-500 hover:text-gray-300'
+                            }`}
+                        >
+                            <span className="text-xs opacity-50">[0]</span> VISUALIZE
+                        </button>
+                        <button
+                            onClick={() => setactiveTab('tutorial')}
+                            className={`flex-1 py-2 text-sm font-bold z-10 transition-colors duration-300 flex items-center justify-center gap-2 ${
+                                activeTab === 'tutorial' ? 'text-[#ffbf00]' : 'text-gray-500 hover:text-gray-300'
+                            }`}
+                        >
+                            <span className="text-xs opacity-50">[1]</span> TUTORIAL
+                        </button>
+                    </div>
+                    <div className="w-full relative h-8 font-mono text-[#ffbf00] font-bold overflow-hidden">
+                        <div
+                            className="absolute transition-all duration-300 flex flex-col items-center"
+                            style={{ left: activeTab === 'visualize' ? '25%' : '75%', transform: 'translateX(-50%)' }}
+                        >
+                            <span className="text-lg leading-none -mt-1">^</span>
+                            <span className="text-[10px] leading-none uppercase tracking-widest mt-1">head_ptr</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {activeTab === 'visualize' ? (
+                <>
       <div className="flex flex-col md:flex-row justify-between items-center bg-gray-800/60 border border-gray-700 p-4 rounded-xl mb-4 gap-4 shadow-lg">
         <div className="flex items-center gap-3">
           <input 
@@ -140,12 +185,12 @@ const FastSlowPointers = () => {
             <h2 className="text-xl font-bold text-gray-300">Move Zeroes (Fast & Slow)</h2>
             <div className="bg-gray-900/60 border border-gray-700 rounded-lg p-3 w-3/5 shadow-inner">
               <div className="flex gap-2 mb-2 border-b border-gray-700 pb-2">
-                <button onClick={() => setActiveTab('objective')} className={`px-3 py-1 text-xs font-bold rounded transition-all ${activeTab === 'objective' ? 'bg-cyan-500/20 text-cyan-300' : 'text-gray-500 hover:text-gray-400'}`}>🎯 Objective</button>
-                <button onClick={() => setActiveTab('technique')} className={`px-3 py-1 text-xs font-bold rounded transition-all ${activeTab === 'technique' ? 'bg-pink-500/20 text-pink-300' : 'text-gray-500 hover:text-gray-400'}`}>🧠 Technique</button>
+                <button onClick={() => setactiveTabInfo('objective')} className={`px-3 py-1 text-xs font-bold rounded transition-all ${activeTabInfo === 'objective' ? 'bg-cyan-500/20 text-cyan-300' : 'text-gray-500 hover:text-gray-400'}`}>🎯 Objective</button>
+                <button onClick={() => setactiveTabInfo('technique')} className={`px-3 py-1 text-xs font-bold rounded transition-all ${activeTabInfo === 'technique' ? 'bg-pink-500/20 text-pink-300' : 'text-gray-500 hover:text-gray-400'}`}>🧠 Technique</button>
               </div>
               <div className="text-xs text-gray-400 leading-relaxed min-h-[40px]">
-                {activeTab === 'objective' && <p><strong className="text-gray-300">Goal:</strong> Move all <span className="text-cyan-400 font-mono">0</span>s to the very end of the array while maintaining the exact relative order of the non-zero numbers. Must be done <strong className="text-gray-300">in-place</strong>.</p>}
-                {activeTab === 'technique' && <p><strong className="text-gray-300">The Parking Lot:</strong> The <span className="text-pink-400 font-bold">Fast pointer</span> scouts ahead for cars (non-zero numbers). The <span className="text-cyan-400 font-bold">Slow pointer</span> anchors on the first available empty spot (<span className="text-gray-500 font-mono">0</span>). When Fast finds a car, they swap!</p>}
+                {activeTabInfo === 'objective' && <p><strong className="text-gray-300">Goal:</strong> Move all <span className="text-cyan-400 font-mono">0</span>s to the very end of the array while maintaining the exact relative order of the non-zero numbers. Must be done <strong className="text-gray-300">in-place</strong>.</p>}
+                {activeTabInfo === 'technique' && <p><strong className="text-gray-300">The Parking Lot:</strong> The <span className="text-pink-400 font-bold">Fast pointer</span> scouts ahead for cars (non-zero numbers). The <span className="text-cyan-400 font-bold">Slow pointer</span> anchors on the first available empty spot (<span className="text-gray-500 font-mono">0</span>). When Fast finds a car, they swap!</p>}
               </div>
             </div>
           </div>
@@ -239,8 +284,12 @@ const FastSlowPointers = () => {
           </div>
         </div>
       </div>
-    </div>
-  );
+    </>
+            ) : (
+                <TutorialTab data={fastSlowData.moveZeroes} />
+            )}
+        </div>
+    );
 };
 
 export default FastSlowPointers;
