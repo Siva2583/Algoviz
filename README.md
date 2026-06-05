@@ -1,88 +1,143 @@
-<div align="center">
-  <h1 align="center">AlgoViz ⚡</h1>
-  <p align="center"><b>An Advanced Interactive Algorithm Visualization Engine</b></p>
-</div>
+# AlgoViz ⚡
 
-<p align="center">
-  AlgoViz is a decoupled, state-driven visualization platform designed to bridge the gap between theoretical Data Structures & Algorithms and practical systems engineering. It transforms complex time complexities into deterministic, real-time animations alongside live execution tracing.
-</p>
+> **An Interactive Algorithm Visualization Engine** — bridging the gap between DSA theory and real systems intuition through real-time animations and live code tracing.
 
----
-
-## 🚀 Core Architecture & Features
-
-* **Decoupled Execution Engine:** Translates complex algorithmic loops into frame-by-frame asynchronous DOM updates without blocking the React main thread.
-* **Synchronized Live-Code Tracer:** Dynamically highlights executing lines of FAANG-level JavaScript in real-time, perfectly mapping to visual canvas mutations.
-* **Asynchronous Playback Telemetry:** Full user control over the execution loop with robust state management (Pause, Resume, Live Speed Scaling).
-* **Interactive Memory States:** Dynamic pointer shifting, array mutations, and boundary tracking that physically resolve mathematically optimal solutions.
+[![React](https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react)](https://reactjs.org/)
+[![Vite](https://img.shields.io/badge/Vite-5-646CFF?style=flat-square&logo=vite)](https://vitejs.dev/)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind-3-38B2AC?style=flat-square&logo=tailwindcss)](https://tailwindcss.com/)
+[![Node.js](https://img.shields.io/badge/Node.js-Express-339933?style=flat-square&logo=node.js)](https://nodejs.org/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-47A248?style=flat-square&logo=mongodb)](https://mongodb.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
 
 ---
 
-## 🧩 Pattern Visualizer (Technical Interview Strategies)
+## 📌 Overview
 
-This module focuses on advanced problem-solving heuristics used to optimize Brute-Force $O(N^2)$ solutions down to $O(N)$ or $O(1)$ time complexities.
+AlgoViz is a full-stack, state-driven visualization platform with two core modules:
 
-### 1. Dynamic Sliding Window (The Caterpillar Method)
-* **Optimization:** **O(N)** Time
-* Visualizes variable-size subarray optimization by stretching the right boundary to satisfy targets and snapping the left pointer forward to optimize window length. Features an interactive, real-time minimum-length tracking scoreboard.
+- **Pattern Visualizer** — Advanced problem-solving patterns used in technical interviews (Sliding Window, Prefix Sum, Two Pointers, Binary Search, Fast & Slow Pointers)
+- **Algorithm Visualizer** — Foundational DSA operations with animated sorting, tree traversals, and N-Queens backtracking
 
-### 2. Prefix Sum (Range Sum Queries)
-* **Optimization:** **O(N)** Build | **O(1)** Query
-* Demonstrates constant-time range sum queries using a synchronized dual-track visualization. Employs an animated "drop" effect to eliminate unwanted sub-array prefixes and visually prove the mathematical query computation.
-
-### 3. Fast & Slow Pointers (Cycle Detection)
-* **Optimization:** **O(N)** Time | **O(1)** Space
-* Engineered with independent, asynchronous pointer animations to visually represent relative traversal speeds (1x vs. 2x steps). Mathematically proves Floyd's Tortoise and Hare algorithm by highlighting exact intersection nodes.
-
-### 4. Two Pointers (Bidirectional Convergence)
-* **Optimization:** **O(N)** Time
-* Maps opposing left and right bounding pointers onto a single array track, translating conditional convergence logic into deterministic visual shifts until the targets intersect or satisfy the constraints.
-
-### 5. Binary Search Variants (Logarithmic Bounds)
-* **Optimization:** **O(log N)** Time
-* Advanced logarithmic boundary manipulation for first/last occurrences and rotated arrays. An interactive divide-and-conquer visualizer featuring dynamic midpoint tracking and instant search-space truncation.
+Every visualizer features a **synchronized live code tracer** that highlights executing lines in real time, mapping exactly to what's happening on the visual canvas — making the connection between code and behavior instantly clear.
 
 ---
 
-## 🧠 Algorithm Visualizer (Foundational DSA)
+## 🎬 Demo
 
-This module focuses on core computer science operations, search space reductions, and spatial recursive structures.
+> Watch the full walkthrough below:
 
-### 1. Sorting Architectures (In-Place & Recursive)
-* **Optimization:** **O(N log N)** / **O(N²)** Time
-* Real-time DOM coordinate swapping animations for in-place algorithms (Bubble, Insertion) and recursive sub-array partitions (Merge Sort, Quick Sort). Visualizes continuous array mutation and call-stack execution efficiency.
-
-### 2. Tree Traversals (BFS & DFS)
-* **Optimization:** **O(N)** Time
-* 2D Node-Edge canvas rendering hierarchical data structures. Maps the live state of auxiliary memory structures (Queues for Level-Order, Stacks for Depth-First) directly alongside the tree to visualize asynchronous enqueue/dequeue operations.
-
-### 3. N-Queens Backtracking
-* **Optimization:** **O(N!)** Time
-* A step-by-step recursive backtracking simulation mapped to an interactive chessboard. Visually isolates spatial conflicts and highlights branch pruning within the recursion tree, safely managing the deep call stack UI updates.
+https://private-user-images.githubusercontent.com/171309175/598276730-08715ad8-f04c-4ced-9b08-9fb495b934f9.mp4
 
 ---
 
-## ⚡ The Visualization Engine (Under the Hood)
+## 🧩 Pattern Visualizer
 
-* **Scriptwriter State Generation:** The backend logic pre-calculates the optimal path and generates an array of discrete, immutable "flashcard" states to ensure smooth animation rendering.
-* **Asynchronous Metronome:** Utilizes custom React hooks (`useRef`, Promises) to safely orchestrate the time-delay between frames, preventing infinite loop browser crashes.
+Transforms brute-force `O(N²)` patterns into optimal `O(N)` and `O(1)` solutions through interactive, step-by-step animations.
+
+| Pattern | Complexity | Highlights |
+|---|---|---|
+| **Dynamic Sliding Window** | `O(N)` Time | Stretch/snap caterpillar method with live min-length tracking |
+| **Prefix Sum** | `O(N)` Build · `O(1)` Query | Dual-track animation with animated prefix "drop" effect |
+| **Fast & Slow Pointers** | `O(N)` Time · `O(1)` Space | Independent async animations proving Floyd's Cycle Detection |
+| **Two Pointers** | `O(N)` Time | Bidirectional convergence mapped to a single array track |
+| **Binary Search Variants** | `O(log N)` Time | First/last occurrence + rotated arrays with live midpoint tracking |
+
+---
+
+## 🧠 Algorithm Visualizer
+
+Core CS operations visualized with real array mutations, recursive call stacks, and auxiliary data structures.
+
+| Algorithm / Structure | Complexity | Highlights |
+|---|---|---|
+| **Sorting** (Bubble, Insertion, Merge, Quick) | `O(N²)` / `O(N log N)` | Real-time DOM coordinate swaps and recursive partition animations |
+| **Tree Traversals** (BFS + DFS) | `O(N)` | 2D node-edge canvas with live Queue/Stack state alongside tree |
+| **N-Queens Backtracking** | `O(N!)` | Interactive chessboard with visual branch pruning and conflict isolation |
+
+---
+
+## ⚙️ How the Visualization Engine Works
+
+AlgoViz uses a two-phase execution model:
+
+1. **Scriptwriter Phase** — Before rendering, the algorithm runs fully and generates an immutable array of discrete "snapshot" states (frame-by-frame diffs of the data structure).
+2. **Playback Phase** — A custom React hook (`useRef` + Promises) acts as an async metronome, advancing through snapshots at user-controlled speed without blocking the main thread.
+
+This guarantees smooth, crash-free animations even for `O(N!)` algorithms like N-Queens.
+
+---
 
 ## 🛠️ Tech Stack
 
-* **Frontend:** React.js, Tailwind CSS, JavaScript (ES6+)
-* **Backend:** Node.js, Express.js
-* **Database:** MongoDB
-## Demo Video
+| Layer | Technology |
+|---|---|
+| Frontend | React 18, Vite, Tailwind CSS, JavaScript (ES6+) |
+| Backend | Node.js, Express.js |
+| Tooling | ESLint, PostCSS |
 
+---
 
-https://github.com/user-attachments/assets/08715ad8-f04c-4ced-9b08-9fb495b934f9
+## 🚀 Getting Started
 
+### Prerequisites
 
+- Node.js ≥ 18
+- npm or yarn
 
+### Installation
 
+```bash
+# Clone the repo
+git clone https://github.com/Siva2583/Algoviz.git
+cd Algoviz
 
-## 👨‍💻 Developer
+# Install dependencies
+npm install
 
-**Siva Charan K.G.** *Aspiring Software Developer | Full-Stack Architecture & Machine Learning*
-* **GitHub:** [https://github.com/Siva2583](https://github.com/Siva2583)
-* **LinkedIn:** [https://linkedin.com/in/siva-charan-kg-72a900284](https://linkedin.com/in/siva-charan-kg-72a900284)
+# Start development server
+npm run dev
+```
+
+Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+### Build for Production
+
+```bash
+npm run build
+npm run preview
+```
+
+---
+
+## 📁 Project Structure
+
+```
+Algoviz/
+├── public/               # Static assets
+├── src/
+│   ├── components/       # Reusable UI components
+│   ├── pages/            # Visualizer page modules
+│   │   ├── PatternVisualizer/
+│   │   └── AlgorithmVisualizer/
+│   └── main.jsx          # App entry point
+├── index.html
+├── vite.config.js
+├── tailwind.config.js
+└── package.json
+```
+
+---
+
+## 👨‍💻 Author
+
+**Siva Charan K.G.**  
+B.Tech CSE · GPCET, Kurnool · CGPA 8.55
+
+[![GitHub](https://img.shields.io/badge/GitHub-Siva2583-181717?style=flat-square&logo=github)](https://github.com/Siva2583)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-siva--charan--kg-0A66C2?style=flat-square&logo=linkedin)](https://linkedin.com/in/siva-charan-kg-72a900284)
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
