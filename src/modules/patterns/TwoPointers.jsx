@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
-import { generateTwoPointersAnimations } from '../core/algorithm/sorting/algorithms/twoPointerslogic';
 import { Navigate,useNavigate } from 'react-router-dom';
+import { generateTwoPointersAnimations } from '../core/algorithm/sorting/algorithms/twoPointersLogic';
 import TutorialTab from '../core/tutorials/TutorialTab';
 import { twoPointersData } from '../core/tutorials/twopointersData';
 

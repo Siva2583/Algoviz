@@ -1,6 +1,6 @@
 import React,{useState,useEffect,useRef} from 'react';
 import {useNavigate} from 'react-router-dom';
-import { generatePrefix } from '../core/algorithm/sorting/algorithms/PrefixSumLogic';
+import { generatePrefix } from '../core/algorithm/sorting/algorithms/prefixSumLogic';
 import TutorialTab from '../core/tutorials/TutorialTab';
 import { prefixSumData } from '../core/tutorials/prefixSumData';
 const PrefixSum=()=>{
