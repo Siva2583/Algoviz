@@ -35,7 +35,7 @@ export const generateMergeSort = (rawArray) => {
         }
 
         const mid = Math.floor((low + high) / 2);
-        stats.passes++; // Counting recursions
+        stats.passes++;
 
         frames.push({
             array: cloneArray(), activeIndices: [mid], sortedIndices: [...sortedIndices],
@@ -67,7 +67,6 @@ export const generateMergeSort = (rawArray) => {
     }
 
     function merge(low, mid, high) {
-        // Step 1: Visually drop the elements into the "temp buffer" on the Y-Axis
         for (let i = low; i <= high; i++) {
             arr[i].yOffset = 80;
         }
@@ -78,7 +77,6 @@ export const generateMergeSort = (rawArray) => {
             currentStats: { ...stats }, msg: `Pulling elements into temporary O(N) memory buffer.`
         });
 
-        // We make a hard copy of the blocks to merge them safely without mutating the loop references
         let tempArr = [];
         for(let i = low; i <= high; i++) tempArr.push({...arr[i]});
         
@@ -88,8 +86,6 @@ export const generateMergeSort = (rawArray) => {
 
         while (leftIdx <= mid - low && rightIdx <= high - low) {
             stats.comps++;
-            
-            // Highlight the two elements being compared in the buffer
             const actualLeftIdx = low + leftIdx;
             const actualRightIdx = low + rightIdx;
 
@@ -100,9 +96,9 @@ export const generateMergeSort = (rawArray) => {
             });
 
             if (tempArr[leftIdx].val <= tempArr[rightIdx].val) {
-                stats.swaps++; // Array write
+                stats.swaps++; 
                 arr[k] = tempArr[leftIdx];
-                arr[k].yOffset = 0; // Snap back up to the main array line!
+                arr[k].yOffset = 0;
                 
                 frames.push({
                     array: cloneArray(), activeIndices: [k], sortedIndices: [...sortedIndices],
@@ -111,9 +107,9 @@ export const generateMergeSort = (rawArray) => {
                 });
                 leftIdx++;
             } else {
-                stats.swaps++; // Array write
+                stats.swaps++;
                 arr[k] = tempArr[rightIdx];
-                arr[k].yOffset = 0; // Snap back up!
+                arr[k].yOffset = 0; 
                 
                 frames.push({
                     array: cloneArray(), activeIndices: [k], sortedIndices: [...sortedIndices],
@@ -125,7 +121,6 @@ export const generateMergeSort = (rawArray) => {
             k++;
         }
 
-        // Copy remaining elements
         let hasRem = leftIdx <= mid - low || rightIdx <= high - low;
         if(hasRem) {
              frames.push({
@@ -161,7 +156,6 @@ export const generateMergeSort = (rawArray) => {
             k++;
         }
         
-        // Mark this chunk as temporarily "sorted" for visual flair if it's the final pass
         if (low === 0 && high === n - 1) {
             for(let i=0; i<n; i++) sortedIndices.push(i);
         }

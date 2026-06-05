@@ -7,21 +7,19 @@ export const generateBubbleSort = (rawArray) => {
     const frames = [];
     const n = arr.length;
     const sortedIndices = [];
-    // NEW: Initialize stats tracker
     let stats = { passes: 0, comps: 0, swaps: 0 };
 
     const cloneArray = () => arr.map(item => ({ ...item }));
 
-    // Initial Frame
     frames.push({
         array: cloneArray(), activeIndices: [], sortedIndices: [...sortedIndices],
         isSwapping: false, minimumIndex: null, codeLine: 'start',
-        currentStats: { ...stats }, // NEW: Send stats to UI
+        currentStats: { ...stats },
         msg: "System Ready. Initializing Bubble Sort."
     });
 
     for (let i = 0; i < n; i++) {
-        stats.passes++; // Increment Pass Counter
+        stats.passes++;
         
         frames.push({
             array: cloneArray(), activeIndices: [], sortedIndices: [...sortedIndices],
@@ -38,7 +36,7 @@ export const generateBubbleSort = (rawArray) => {
                 msg: `Scanning window at index ${j} and ${j + 1}.`
             });
 
-            stats.comps++; // Increment Comparison Counter
+            stats.comps++; 
             frames.push({
                 array: cloneArray(), activeIndices: [j, j + 1], sortedIndices: [...sortedIndices],
                 isSwapping: false, minimumIndex: null, codeLine: 'compare',
@@ -47,7 +45,7 @@ export const generateBubbleSort = (rawArray) => {
             });
 
             if (arr[j].val > arr[j + 1].val) {
-                stats.swaps++; // Increment Swap Counter
+                stats.swaps++; 
                 frames.push({
                     array: cloneArray(), activeIndices: [j, j + 1], sortedIndices: [...sortedIndices],
                     isSwapping: true, minimumIndex: null, codeLine: 'swap',
@@ -55,7 +53,6 @@ export const generateBubbleSort = (rawArray) => {
                     msg: `Yes! ${arr[j].val} > ${arr[j + 1].val}. Swapping blocks...`
                 });
 
-                // The actual mathematical swap
                 let temp = arr[j];
                 arr[j] = arr[j + 1];
                 arr[j + 1] = temp;
@@ -76,7 +73,6 @@ export const generateBubbleSort = (rawArray) => {
             }
         }
 
-        // Lock the element that just bubbled to the end
         sortedIndices.push(n - i - 1);
         frames.push({
             array: cloneArray(), activeIndices: [], sortedIndices: [...sortedIndices],
@@ -86,7 +82,6 @@ export const generateBubbleSort = (rawArray) => {
         });
     }
 
-    // Final Frame
     frames.push({
         array: cloneArray(), activeIndices: [], sortedIndices: [...Array(n).keys()],
         isSwapping: false, minimumIndex: null, codeLine: 'start',

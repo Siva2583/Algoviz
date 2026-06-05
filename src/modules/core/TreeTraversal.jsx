@@ -97,11 +97,19 @@ const TreeTraversal = () => {
         <div className="flex flex-col min-h-screen bg-[#0a0a0f] text-gray-200 font-sans p-4">
             <div className="flex justify-between items-start mb-6">
                 <button
-                    className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 hover:scale-105 active:scale-95 transition-all duration-300"
-                    onClick={() => navigate('/')}
-                >
-                    ← Back To Controls
-                </button>
+                        onClick={() => navigate('/')}
+                        className="group flex items-center gap-3 px-4 py-2 bg-[#080808] border border-gray-800 rounded-md hover:border-[#ffbf00]/30 transition-all duration-300 font-mono shadow-[0_0_15px_rgba(0,0,0,0.5)]"
+                    >
+                        <span className="text-[#ffbf00] font-bold group-hover:-translate-x-1 transition-transform duration-300">
+                            {'<'}
+                        </span>
+                        <span className="text-gray-400 text-sm group-hover:text-white transition-colors duration-300">
+                            cd ..
+                        </span>
+                        <span className="text-gray-600 text-xs tracking-widest border-l border-gray-800 pl-3 ml-1 group-hover:border-[#ffbf00]/50 transition-colors duration-300">
+                            /ROOT
+                        </span>
+                    </button>
                 <div className="flex flex-col w-72">
                     <div className="flex bg-[#080808] border border-gray-800 rounded-md p-1 relative shadow-[0_0_15px_rgba(0,0,0,0.8)] font-mono">
                         <div

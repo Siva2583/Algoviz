@@ -22,7 +22,7 @@ export const generateTwoPointersAnimations = (inputStr) => {
       type: 'swap', 
       L: L, 
       R: R, 
-      currentArray: [...arr], // Send the newly updated array state
+      currentArray: [...arr],
       message: `Swapped! [ ${arr[L]} ] ↔ [ ${arr[R]} ]`
     });
     L++;
